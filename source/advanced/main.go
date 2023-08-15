@@ -43,6 +43,7 @@ func main() {
 	interface2()
 	interface3()
 	interface4()
+	interface5()
 
 	fmt.Println(sum(1, 2, 3, 4, 5)) //5개의 인수를 사용합니다.
 	fmt.Println(sum(10, 20))        //2개의 인수를 사용합니다.
@@ -350,6 +351,34 @@ func PrintAge(stringer Stringer) { //
 func interface4() {
 	s := &Student2{15} // *Student 타입 변수 s 선언 및 초기화
 	PrintAge(s)        // 변수 s 를 인터페이스 인수로 PrintAge() 함수 호출
+}
+
+// 동일 인터페이스 일때
+// InterfaceA 인터페이스 정의
+type InterfaceA interface {
+	MethodA()
+}
+
+// InterfaceB 인터페이스 정의
+type InterfaceB interface {
+	MethodA()
+}
+
+// MyStruct 구조체 정의
+type MyStruct struct{}
+
+// MyStruct의 MethodA() 메서드 구현
+func (s MyStruct) MethodA() {
+	fmt.Println("MethodA called")
+}
+
+func interface5() {
+	var myStruct MyStruct
+	var a InterfaceA = myStruct
+	var b InterfaceB = myStruct
+
+	a.MethodA()
+	b.MethodA()
 }
 
 // 함수 고급
